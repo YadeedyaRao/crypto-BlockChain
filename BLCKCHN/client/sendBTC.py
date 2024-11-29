@@ -65,6 +65,7 @@ class sendBTC:
         TxnOuts = []
         """charge fee for miner"""
         fee = self.COIN
+        if(self.from_public_address == MINER_ADDRESS): fee = 0
         to_address_script_pubkey = self.scriptPublicKey(self.to_public_address)
         #output for reciever
         TxnOuts.append(TxnOut(self.amount, script_publickey= to_address_script_pubkey))

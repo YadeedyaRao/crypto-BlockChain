@@ -4,7 +4,7 @@ import sys
 import json
 import time
 randezvous = ('192.168.137.1', 55555)
-my_port = 50001
+my_port = 50004
 def getPeers(sock):
     print("conneting to randezvous server")
     sock.sendto(b'0', randezvous) # dummy message
@@ -68,11 +68,6 @@ def client_p2p_main(block_buffer, utxos_buffer, mempool_buffer):
         (ip, s_port, d_port) = peer
         print('\n got peer')
         print(f'ip_address: {ip}\nsource port : {s_port}\ndestination port : {d_port}\n')
-        print(f"Punching Hole for inbound from {ip}, {s_port}")
-        sock.sendto(b'0', (ip, s_port))
-
-        print("Punched Hole")
-    #listen messages from my port after punching holes
     def listen():
         while True:
             try:

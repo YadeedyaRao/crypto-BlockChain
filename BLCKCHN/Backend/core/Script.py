@@ -43,7 +43,7 @@ class Script:
                 result += cmd
         #get the length of the whole thing
         total = len(result)
-        #encode_varunt the total length of the result and prepend
+        #encode_varint the total length of the result and prepend
         return encode_varint(total) + result
 
     def evaluate(self, z):

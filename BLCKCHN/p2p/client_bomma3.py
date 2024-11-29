@@ -27,10 +27,6 @@ if __name__ == '__main__':
         (ip, s_port, d_port) = peer
         print('\n got peer')
         print(f'ip_address: {ip}\nsource port : {s_port}\ndestination port : {d_port}\n')
-        print(f"Punching Hole for inbound from {ip}, {s_port}")
-        sock.sendto(b'0', (ip, s_port))
-
-        print("Punched Hole")
     #listen messages from my port after punching holes
     def listen():
         while True:

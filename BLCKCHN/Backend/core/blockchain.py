@@ -130,6 +130,7 @@ class Blockchain:
 
     def main(self):
         lastBlock = self.fetch_last_block()
+        ref_time = time.time()
         if lastBlock is None:
             self.GenesisBlock()
         while True:
@@ -137,6 +138,16 @@ class Blockchain:
             BlockHeight = lastBlock["Height"]+1
             prevBlockHash = lastBlock["BlockHeader"]["blockHash"]
             self.addBlock(BlockHeight, prevBlockHash)
+            curr_time = time.time()
+            if(curr_time - ref_time < 10):
+                print(f"increasing difficulty, updated target from {self.current_target}", end= ' ')
+                self.current_target -= 0xfffff
+                print(f"to {self.current_target}")
+            elif(curr_time - ref_time > 15):
+                print(f"decreasing difficulty, updated target from {self.current_target}", end= ' ')
+                self.current_target = int(self.current_target * 1.5)
+                print(f"to {self.current_target}")
+            ref_time = curr_time
 
 
 if __name__ == "__main__":

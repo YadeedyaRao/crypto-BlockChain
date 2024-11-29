@@ -27,8 +27,8 @@ print(f'ip_address: {ip}\nsource port : {s_port}\ndestination port : {d_port}\n'
 
 print("punching hole")
 
-sock.bind(('0.0.0.0', s_port))
-sock.sendto(b'0', (ip, d_port))
+#sock.bind(('0.0.0.0', s_port))
+sock.sendto(b'0', (ip, s_port))
 
 def listen():
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -39,7 +39,7 @@ def listen():
         print(f'\rpeer: {data.decode()}\n>', end = '')
 
 listener = threading.Thread(target= listen, daemon=True)
-listen.start()
+listener.start()
 
 
 
